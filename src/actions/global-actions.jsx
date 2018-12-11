@@ -1,7 +1,7 @@
 import { generateMessage } from './message-actions'
 
 export const updateAuthorization = value => ({
-    type: 'UPDATE_AUTHORIZATION',
+    type: 'UPDATE_IS_AUTHENTICATED',
     value
 })
 
@@ -27,8 +27,10 @@ export const submitLogin = e => (dispatch, getState) => {
         body: requestData
     }).then(response => {
         if (response.ok) {
-            response.json().then(payload => window.sessionStorage.setItem("authorization", payload.token))
-            dispatch(updateAuthorization(true))
+            response.json().then(payload => {
+                window.sessionStorage.setItem("authorization", payload.token)
+                dispatch(updateAuthorization(true))
+            })
         } else {
             response.json().then(payload => dispatch(generateMessage('error', payload.message)))
         }
@@ -52,8 +54,10 @@ export const submitRegister = e => (dispatch, getState) => {
         body: requestData
     }).then(response => {
         if (response.ok) {
-            response.json().then(payload => window.sessionStorage.setItem("authorization", payload.token))
-            dispatch(updateAuthorization(true))
+            response.json().then(payload => {
+                window.sessionStorage.setItem("authorization", payload.token)
+                dispatch(updateAuthorization(true))
+            })
         } else {
             response.json().then(payload => dispatch(generateMessage('error', payload.message)))
         }

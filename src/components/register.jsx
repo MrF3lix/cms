@@ -43,7 +43,7 @@ class Register extends React.Component {
                     </div>
                 </div>
                 {isAuthenticated === true &&
-                    <Redirect to={'/cms'} />
+                    <Redirect to={'/overview'} />
                 }
             </main>
         )

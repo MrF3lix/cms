@@ -1,7 +1,7 @@
 const initialState = {
     isMobile: false,
     isDev: false,
-    isPageLoaded: false,
+    isPageLoaded: true,
     isAuthenticated: false,
     baseUrl: 'http://localhost:8080',
 }

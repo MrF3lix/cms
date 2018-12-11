@@ -7,7 +7,8 @@ const jwt = () => {
     return expressJwt({secret, isRevoked}).unless({
         path: [
             '/login',
-            '/register'
+            '/users/authenticate',
+            '/users/register'
         ]
     })
 }
