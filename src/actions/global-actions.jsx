@@ -1,4 +1,5 @@
 import { generateMessage } from './message-actions'
+import * as Requests from '../helpers/fetch-helper'
 
 export const updateAuthorization = value => ({
     type: 'UPDATE_IS_AUTHENTICATED',
@@ -10,7 +11,7 @@ export const updateIsPageLoaded = value => ({
     value
 })
 
-export const submitLogin = e => (dispatch, getState) => {
+export const submitLogin = e => async (dispatch, getState) => {
     e.preventDefault()
 
     const state = getState()
@@ -19,25 +20,18 @@ export const submitLogin = e => (dispatch, getState) => {
     const values = new FormData(e.target)
     let requestData = new URLSearchParams(values)
 
-    fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-        },
-        body: requestData
-    }).then(response => {
-        if (response.ok) {
-            response.json().then(payload => {
-                window.sessionStorage.setItem("authorization", payload.token)
-                dispatch(updateAuthorization(true))
-            })
-        } else {
-            response.json().then(payload => dispatch(generateMessage('error', payload.message)))
-        }
-    })
+    const response = await Requests.postRequest(url, requestData)
+    const payload = await response.json()
+
+    if (response.ok) {
+        window.sessionStorage.setItem("authorization", payload.token)
+        dispatch(updateAuthorization(true))
+    } else {
+        dispatch(generateMessage('error', payload.message))
+    }
 }
 
-export const submitRegister = e => (dispatch, getState) => {
+export const submitRegister = e => async (dispatch, getState) => {
     e.preventDefault()
 
     const state = getState()
@@ -46,20 +40,13 @@ export const submitRegister = e => (dispatch, getState) => {
     const values = new FormData(e.target)
     let requestData = new URLSearchParams(values)
 
-    fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-        },
-        body: requestData
-    }).then(response => {
-        if (response.ok) {
-            response.json().then(payload => {
-                window.sessionStorage.setItem("authorization", payload.token)
-                dispatch(updateAuthorization(true))
-            })
-        } else {
-            response.json().then(payload => dispatch(generateMessage('error', payload.message)))
-        }
-    })
+    const response = await Requests.postRequest(url, requestData)
+    const payload = await response.json()
+
+    if (response.ok) {
+        window.sessionStorage.setItem("authorization", payload.token)
+        dispatch(updateAuthorization(true))
+    } else {
+        dispatch(generateMessage('error', payload.message))
+    }
 }
