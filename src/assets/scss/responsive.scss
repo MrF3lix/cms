@@ -1,0 +1,5 @@
+﻿//MOBILE
+@media(max-width: #{$breakpoint-mobile}) {}
+
+// DESKTOP
+@media(min-width: #{$breakpoint-mobile}) {}

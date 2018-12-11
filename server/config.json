@@ -1,0 +1,4 @@
+{
+    "connectionString": "mongodb://localhost/cms",
+    "secret": "62E283F6737CF6EC48420B26ACD81EA56DDA11723FD109FE40CFD335AA678EF4"
+}
