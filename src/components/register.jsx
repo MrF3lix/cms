@@ -12,35 +12,35 @@ class Register extends React.Component {
         const { isAuthenticated } = this.props.global
         return (
             <main>
-                <div className="login__container">
-                    <div className="inner inner--small">
+                <div className="inner inner--small">
+                    <section className="register__container">
+                        <h2>Register</h2>
                         <form onSubmit={this.props.submitRegister}>
-                            <div className="title">Register</div>
                             <div className="input__container">
-                                <div className="input__label input__label--touched">Username</div>
+                                <label>Username</label>
                                 <input type="text" name="username" id="username" />
                             </div>
                             <div className="input__container">
-                                <div className="input__label input__label--touched">Firstname</div>
+                                <label>Firstname</label>
                                 <input type="text" name="firstName" id="firstName" />
                             </div>
                             <div className="input__container">
-                                <div className="input__label input__label--touched">Lastname</div>
+                                <label>Lastname</label>
                                 <input type="text" name="lastName" id="lastName" />
                             </div>
                             <div className="input__container">
-                                <div className="input__label input__label--touched">Email</div>
+                                <label>Email</label>
                                 <input type="email" name="email" id="email" />
                             </div>
                             <div className="input__container">
-                                <div className="input__label input__label--touched">Password</div>
+                                <label>Password</label>
                                 <input type="password" name="password" id="password" />
                             </div>
                             <div className="input__container">
                                 <button type="submit">Submit</button>
                             </div>
                         </form >
-                    </div>
+                    </section>
                 </div>
                 {isAuthenticated === true &&
                     <Redirect to={'/login'} />

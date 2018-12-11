@@ -15,7 +15,7 @@ const start = () => {
     server.use(express.static(path.join(__dirname, '../build')))
 
     server.use((err, req, res, next) => {
-        if(401 == err.status) {
+        if(401 === err.status) {
             res.redirect('/login')
         }
     })

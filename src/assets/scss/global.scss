@@ -1,0 +1,23 @@
+.navigation__container {
+    display: flex;
+    .navigation__item {
+        margin-left: 20px;
+        padding: 10px 5px;
+        cursor: pointer;
+        text-decoration: none;
+        &.active {
+            font-weight: 700;
+        }
+    }
+    .account--actions {
+        border: 1px solid $light;
+        border-radius: 3px;
+        padding: 10px 20px;
+        font-weight: 700;
+        &.account--actions--main {
+            border: 1px solid $light-green;
+            background-color: $light-green;
+            color: $dark;
+        }
+    }
+}

@@ -8,7 +8,7 @@ const messages = (state = initialState, action) => {
             return {
                 ...state,
                 items: state.items.map(message => {
-                    if (message.id != action.id) {
+                    if (message.id !== action.id) {
                         return message
                     } else {
                         message.hidden = true

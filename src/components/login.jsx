@@ -12,23 +12,24 @@ class Login extends React.Component {
         const { isAuthenticated } = this.props.global
         return (
             <main>
-                <div className="login__container">
-                    <div className="inner inner--small">
+                <div className="inner inner--small">
+                    <section className="login__container">
+                        <h2>Login</h2>
                         <form onSubmit={(e) => this.props.submitLogin(e)}>
-                            <div className="title">Login</div>
                             <div className="input__container">
-                                <div className="input__label input__label--touched">Username</div>
-                                <input type="text" name="username" id="username" />
+                                <label>Username</label>
+                                <input type="text" name="username" id="username" autocomplete="off" />
                             </div>
                             <div className="input__container">
-                                <div className="input__label input__label--touched">Password</div>
-                                <input type="password" name="password" id="password" />
+                                <label>Password</label>
+                                <input type="password" name="password" id="password" autocomplete="off" />
                             </div>
                             <div className="input__container">
-                                <button type="submit" >Submit</button>
+                                <button type="submit">Submit</button>
                             </div>
                         </form >
-                    </div>
+
+                    </section>
                 </div>
                 {isAuthenticated === true &&
                     <Redirect to={'/overview'} />

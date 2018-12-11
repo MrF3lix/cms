@@ -8,13 +8,13 @@ const Messages = ({ messages, closeMessage }) => {
         return (
             <div className="messages__container">
                 {messages.filter(m => !m.hidden).map((message, i) => {
-                    if (i >= 3) return
+                    if (i >= 3) return <React.Fragment />
                     return (
                         <div
                             className={classNames('message__container', {
-                                'message__container--error': message.type == 'error',
-                                'message__container--info': message.type == 'info',
-                                'message__container--warning': message.type == 'warning'
+                                'message__container--error': message.type === 'error',
+                                'message__container--info': message.type === 'info',
+                                'message__container--warning': message.type === 'warning'
                             })}
                             key={i}>
                             <div className="message__content">
