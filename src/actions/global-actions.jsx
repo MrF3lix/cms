@@ -26,6 +26,7 @@ export const submitLogin = e => async (dispatch, getState) => {
     if (response.ok) {
         window.sessionStorage.setItem("authorization", payload.token)
         dispatch(updateAuthorization(true))
+        dispatch(updateCurrentUser(payload))
     } else {
         dispatch(generateMessage('error', payload.message))
     }
@@ -44,9 +45,22 @@ export const submitRegister = e => async (dispatch, getState) => {
     const payload = await response.json()
 
     if (response.ok) {
-        window.sessionStorage.setItem("authorization", payload.token)
         dispatch(updateAuthorization(true))
     } else {
         dispatch(generateMessage('error', payload.message))
     }
 }
+
+export const getCurrentUser = () => async (dispatch, getState) => {
+    const state = getState()
+    const url = `${state.global.baseUrl}/users/current`
+
+    const response = await Requests.getRequest(url)
+    const payload = await response.json()
+    dispatch(updateCurrentUser(payload))
+}
+
+const updateCurrentUser = value => ({
+    type: 'UPDATE_CURRENT_USER',
+    value
+})

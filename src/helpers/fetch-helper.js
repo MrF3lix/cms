@@ -8,3 +8,15 @@ export const postRequest = (url, body) => {
         }
     )
 }
+
+export const getRequest = (url) => {
+    let token = window.sessionStorage.getItem('authorization')
+    return fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+                'Authorization': `Bearer ${token}`
+            }
+        }
+    )
+}
