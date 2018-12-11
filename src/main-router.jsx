@@ -20,6 +20,7 @@ class MainRouter extends React.Component {
                 <Loading isLoaded={global.isPageLoaded}>
                     <Header />
                     <Switch location={location}>
+                        <Route path={'/'} component={Login} exact={true} />
                         <Route path={'/login'} component={Login} exact={true} />
                         <Route path={'/register'} component={Register} exact={true} />
                         <PrivateRoute path={'/overview'} component={Overview} exact={true} />
