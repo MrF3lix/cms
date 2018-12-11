@@ -1,12 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getCurrentUser } from '../actions/global-actions'
+import { getCurrentUser, getAllUsers, getAllArticles } from '../actions/global-actions'
 
 class Overview extends React.Component {
     componentDidMount() {
         if (!this.props.global.currentUser) {
             this.props.getCurrentUser()
         }
+        this.props.getAllUsers()
+        this.props.getAllArticles()
     }
 
     render() {
@@ -18,7 +20,7 @@ class Overview extends React.Component {
                     <section>
                         {global.currentUser &&
                             <React.Fragment>
-                                <h2>Current User:</h2>
+                                <h2>Current User</h2>
                                 <div>{global.currentUser.firstName} - {global.currentUser.lastName}</div>
                                 <div>{global.currentUser.email}</div>
                             </React.Fragment>
@@ -39,16 +41,16 @@ class Overview extends React.Component {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {global.currentUser &&
-                                        <tr className="active">
-                                            <td>{global.currentUser.username}</td>
-                                            <td>{global.currentUser.email}</td>
-                                            <td>{global.currentUser.firstName}</td>
-                                            <td>{global.currentUser.lastName}</td>
-                                            <td>{new Date(global.currentUser.createdDate).toLocaleString()}</td>
+                                    {global.users.map((user, i) => (
+                                        <tr key={i} className={user._id == global.currentUser._id && 'active'}>
+                                            <td>{user.username}</td>
+                                            <td>{user.email}</td>
+                                            <td>{user.firstName}</td>
+                                            <td>{user.lastName}</td>
+                                            <td>{new Date(user.createdDate).toLocaleString()}</td>
                                             <td></td>
                                         </tr>
-                                    }
+                                    ))}
                                 </tbody>
                             </table>
                         </React.Fragment>
@@ -56,10 +58,32 @@ class Overview extends React.Component {
                     <section>
                         <React.Fragment>
                             <h2>Content</h2>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Element</th>
+                                        <th>Title</th>
+                                        <th>Content</th>
+                                        <th>Created at</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {global.articles.map((article, i) => (
+                                        <tr ley={i}>
+                                            <td>{article.element}</td>
+                                            <td>{article.title}</td>
+                                            <td>{article.content}</td>
+                                            <td>{new Date(article.createdDate).toLocaleString()}</td>
+                                            <td></td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
                         </React.Fragment>
                     </section>
                 </div>
-            </main>
+            </main >
         )
     }
 }
@@ -68,7 +92,9 @@ const mapStateToProps = state => ({
     global: state.global
 })
 const mapDispatchToProps = dispatch => ({
-    getCurrentUser: () => dispatch(getCurrentUser())
+    getCurrentUser: () => dispatch(getCurrentUser()),
+    getAllUsers: () => dispatch(getAllUsers()),
+    getAllArticles: () => dispatch(getAllArticles())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Overview)

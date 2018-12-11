@@ -4,7 +4,9 @@ const initialState = {
     isPageLoaded: true,
     isAuthenticated: false,
     baseUrl: 'http://localhost:8080',
-    currentUser: null
+    currentUser: null,
+    users: [],
+    articles: []
 }
 
 const global = (state = initialState, action) => {
@@ -28,6 +30,16 @@ const global = (state = initialState, action) => {
             return {
                 ...state,
                 currentUser: action.value
+            }
+        case 'UPDATE_ALL_USERS':
+            return {
+                ...state,
+                users: action.value
+            }
+        case 'UPDATE_ALL_ARTICLES':
+            return {
+                ...state,
+                articles: action.value
             }
         default:
             return state

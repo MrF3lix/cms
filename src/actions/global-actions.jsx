@@ -60,6 +60,34 @@ export const getCurrentUser = () => async (dispatch, getState) => {
     dispatch(updateCurrentUser(payload))
 }
 
+export const getAllUsers = () => async (dispatch, getState) => {
+    const state = getState()
+    const url = `${state.global.baseUrl}/users`
+
+    const response = await Requests.getRequest(url)
+    const payload = await response.json()
+    dispatch(updateAllUsers(payload))
+}
+
+export const getAllArticles = () => async (dispatch, getState) => {
+    const state = getState()
+    const url = `${state.global.baseUrl}/articles`
+
+    const response = await Requests.getRequest(url)
+    const payload = await response.json()
+    dispatch(updateAllArticles(payload))
+}
+
+const updateAllArticles = value => ({
+    type: 'UPDATE_ALL_ARTICLES',
+    value
+})
+
+const updateAllUsers = value => ({
+    type: 'UPDATE_ALL_USERS',
+    value
+})
+
 const updateCurrentUser = value => ({
     type: 'UPDATE_CURRENT_USER',
     value

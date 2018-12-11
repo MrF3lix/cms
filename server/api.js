@@ -16,6 +16,7 @@ const start = () => {
 
     server.use(jwt())
     server.use('/users', require('./users/users.controller.js'))
+    server.use('/articles', require('./articles/article.controller.js'))
 
     server.use(errorHandler)
     server.listen(PORT, () => { console.log(`Website runs at http://localhost:${PORT}/`) })
