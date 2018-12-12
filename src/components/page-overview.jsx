@@ -17,7 +17,7 @@ class Overview extends React.Component {
             <main>
                 <div className="inner">
                     <h1>Overview</h1>
-                    <section>
+                    <section className="section--small">
                         {global.currentUser &&
                             <React.Fragment>
                                 <h2>Current User</h2>
@@ -25,6 +25,10 @@ class Overview extends React.Component {
                                 <div>{global.currentUser.email}</div>
                             </React.Fragment>
                         }
+                    </section>
+                    <section className="section--small">
+                        <h2>Usage</h2>
+                        <div>No analytics data available</div>
                     </section>
                     <section>
                         <React.Fragment>

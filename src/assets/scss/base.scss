@@ -12,6 +12,7 @@ h1 {
     font-size: 28px;
     line-height: 32px;
     margin: 0 0 10px 0;
+    width: 100%;
 }
 
 h2 {
@@ -72,12 +73,22 @@ main {
     flex-grow: 2;
     padding: 20px 0;
     background: $light-grey;
+    .inner {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
 }
 
 section {
+    width: 100%;
     background: $light;
     padding: 20px 10px;
     margin: 20px 0;
+    &.section--small {
+        width: calc(50% - 10px);
+    }
+    overflow: auto;
 }
 
 table {
@@ -91,12 +102,9 @@ table {
     }
     td,
     th {
-        border-bottom: 1px solid $dark-grey;
+        border-bottom: 1px solid $medium-grey;
         padding: 10px 5px;
         text-align: left;
-    }
-    .active {
-        background-color: lighten($yellow, 40%);
     }
 }
 
